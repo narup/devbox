@@ -53,6 +53,8 @@
     corretto17 # Amazon distribution of Open JDK 17
     flameshot # for screenshot
     localsend # Airdrop alternative 
+    ollama
+    redis
   ];
 
   programs.zsh = {
