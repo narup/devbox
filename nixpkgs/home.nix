@@ -20,7 +20,6 @@
     binutils 
     coreutils
     neovim
-    git
     zsh
 	  antibody
 	  stow
@@ -46,7 +45,6 @@
     nasm
     zig
     postgresql_16
-    mongodb
     vscode
     brave
     fx # terminal JSON viewer
