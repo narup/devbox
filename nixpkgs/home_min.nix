@@ -14,9 +14,6 @@
   home.packages = with pkgs; [
     alacritty
     kitty
-    neovim
-    zellij
-    zsh
     go
   ];
 
