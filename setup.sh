@@ -66,4 +66,20 @@ curl https://zed.dev/install.sh | sh
 echo "Install neovim plugins"
 nvim --headless +PlugInstall +qall
 
+# Add alias to .bashrc or .zshrc
+if [ -f ~/.bashrc ]; then
+	echo "alias nix-apply='home-manager switch --flake .#puran'" >>~/.bashrc
+	echo "Alias added to .bashrc"
+elif [ -f ~/.zshrc ]; then
+	echo "alias nix-apply='home-manager switch --flake .#puran'" >>~/.zshrc
+	echo "Alias added to .zshrc"
+fi
+
+# Reload shell configuration
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+elif [ -f ~/.zshrc ]; then
+	. ~/.zshrc
+fi
+
 echo "Setup Complete!! Yay! Happy Coding!🎇💻"
