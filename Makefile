@@ -1,3 +1,4 @@
+# Reference from https://github.com/mitchellhh/nix-osconfig
 # Connectivity info for Linux VM
 NIXADDR ?= unset
 NIXPORT ?= 22
@@ -38,9 +39,6 @@ endif
 # and just set the password of the root user to "root". This will install
 # NixOS. After installing NixOS, you must reboot and set the root password
 # for the next step.
-#
-# NOTE(puran): I'm sure there is a way to do this and bootstrap all
-# in one step but when I tried to merge them I got errors. One day.
 vm/bootstrap0:
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
 		parted /dev/$(NIXBLOCKDEVICE) -- mklabel gpt; \
@@ -94,7 +92,7 @@ vm/copy:
 		--exclude='.git-crypt/' \
 		--exclude='iso/' \
 		--rsync-path="sudo rsync" \
-		$(MAKEFILE_DIR)/configuration.nix $(NIXUSER)@$(NIXADDR):/etc/nixos
+		$(MAKEFILE_DIR)/nix/configuration.nix $(NIXUSER)@$(NIXADDR):/etc/nixos
 
 # run the nixos-rebuild switch command. This does NOT copy files so you
 # have to run vm/copy before.
@@ -103,7 +101,3 @@ vm/switch:
 		sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch \
 	"
 
-# Build a WSL installer
-.PHONY: wsl
-wsl:
-	 nix build ".#nixosConfigurations.wsl.config.system.build.installer"

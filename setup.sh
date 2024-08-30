@@ -1,20 +1,18 @@
 #!/bin/bash
 
-echo "Starting the devbox setup "
+echo "Starting the devbox setup"
 
 # Enable flakes
 mkdir -p ~/.config/nix
+
 echo "experimental-features = nix-command flakes" >>~/.config/nix/nix.conf
 
 echo "Installing Home Manager"
 
-# Setup Home Manager Nix config
+# Setup Home Manager Nix config directory and copy the already packaged nix files 
 mkdir -p ~/.config/home-manager
-cp ./nixpkgs/flake.nix ~/.config/home-manager/flake.nix
-cp ./nixpkgs/home.nix ~/.config/home-manager/home.nix
-
-#install home manager permanently
-nix-env -iA nixos.home-manager
+cp ./nix/flake.nix ~/.config/home-manager/flake.nix
+cp ./nix/home.nix ~/.config/home-manager/home.nix
 
 #install the packages defined in home.nix
 home-manager switch --flake ~/.config/home-manager
@@ -28,5 +26,7 @@ cd ~/.dotfiles
 stow nvim
 stow zellij
 stow alacritty
+stow kitty 
 
-echo "Setup Complete!! Yay! Happy Coding!🎇💻"
+cd ..
+echo "🎇💻Setup Complete!! Reboot the system once just to make sure things are loaded. Yay!! Happy Coding!🎇💻"
