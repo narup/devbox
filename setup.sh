@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting the devbox setup"
+echo "Starting the devbox setup "
 
 # Enable flakes
 mkdir -p ~/.config/nix
