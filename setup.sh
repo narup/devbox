@@ -13,58 +13,20 @@ mkdir -p ~/.config/home-manager
 cp ./nixpkgs/flake.nix ~/.config/home-manager/flake.nix
 cp ./nixpkgs/home.nix ~/.config/home-manager/home.nix
 
-nix shell github:nix-community/home-manager#home-manager -c home-manager switch --flake ~/.config/home-manager
+#install home manager permanently
+nix-env -iA nixos.home-manager
 
-# Install Home Manager permanently
-nix profile install nixpkgs#home-manager
-
-# Check Home Manager and Nix versions
-home-manager --version
-nix --version
-nix-env --version
-nix-shell --version
+#install the packages defined in home.nix
+home-manager switch --flake ~/.config/home-manager
 
 echo "Nix packages installed. Now configuring dot files..."
 
 cp -r ./dotfiles ~/.dotfiles
 
+cd ~/.dotfiles
+
 stow nvim
-stow zsh
 stow zellij
 stow alacritty
-
-# add zsh as a login shell
-command -v zsh | sudo tee -a /etc/shells
-
-# use zsh as default shell
-sudo usermod -s $(which zsh) $USER
-
-# bundle zsh plugins
-antibody bundle <~/.zsh_plugins.txt >~/.zsh_plugins.sh
-
-# install apps that are not in nix package manager
-echo "Dotfiles configured. Downloading other packages..."
-
-# Zed
-curl https://zed.dev/install.sh | sh
-
-echo "Install neovim plugins"
-nvim --headless +PlugInstall +qall
-
-# Add alias to .bashrc or .zshrc
-if [ -f ~/.bashrc ]; then
-	echo "alias nix-apply='home-manager switch --flake .#puran'" >>~/.bashrc
-	echo "Alias added to .bashrc"
-elif [ -f ~/.zshrc ]; then
-	echo "alias nix-apply='home-manager switch --flake .#puran'" >>~/.zshrc
-	echo "Alias added to .zshrc"
-fi
-
-# Reload shell configuration
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-elif [ -f ~/.zshrc ]; then
-	. ~/.zshrc
-fi
 
 echo "Setup Complete!! Yay! Happy Coding!🎇💻"

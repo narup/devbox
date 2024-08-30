@@ -2,9 +2,8 @@
 
 {
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "vscode"
-    "mongodb"
   ];
 
 
@@ -20,7 +19,6 @@
     binutils 
     coreutils
     neovim
-    zsh
 	  antibody
 	  stow
 	  fzf
@@ -57,5 +55,20 @@
     localsend # Airdrop alternative 
     ollama
     redis
+    oh-my-zsh
+    zsh-powerlevel10k
+    meslo-lgs-nf
   ];
+
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;  # Optionally, enable Oh My Zsh if you want
+    };
+  };
+
+  programs.home-manager = {
+    enable = true;   
+  };
+  # You can also add other configurations here...
 }
