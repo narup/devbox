@@ -79,8 +79,7 @@
     dotDir = ".config/zsh"; #note - it doesn't have to specify home directory
 
     initExtra = ''
-    #  # Powerlevel10k Zsh theme  
-    #  source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme  
+      #Powerlevel10k Zsh theme  
       test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh  
     '';
 

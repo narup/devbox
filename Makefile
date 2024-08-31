@@ -79,10 +79,7 @@ vm/bootstrap:
 # copy our secrets into the VM
 vm/secrets:
 	# SSH keys
-	rsync -av -e 'ssh $(SSH_OPTIONS) -p$(NIXPORT)'\
-		--exclude='environment' \
-		--rsync-path="sudo rsync"\
-		$(HOME)/.ssh/ $(NIXUSER)@$(NIXADDR):~/.ssh
+	sudo scp -r ~/.ssh $(NIXUSER)@$(NIXADDR):~/
 
 # copy the Nix configurations into the VM.
 vm/copy:

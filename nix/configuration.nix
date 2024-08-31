@@ -55,7 +55,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.puran = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "docker" "wheel" ]; # Enable ‘sudo’ for the user.
+     openssh.authorizedKeys.keys = [
+       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrp8k7u0QxGib4CpgZ5iOotE2BPLeyei2Z4Jv99LCY6 mailtopuran@gmail.com"
+     ];
      packages = with pkgs; [
        firefox
        tree
@@ -110,8 +113,15 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.01"; # Did you read the comment?
 
+  nix.package = pkgs.nixVersions.latest; 
+  nix.extraOptions = "experimental-features = nix-command flakes";
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = true;
+  services.openssh.settings.PermitRootLogin = "yes";
+  users.users.root.initialPassword = "root";
+  
   services = {
     gnome.core-utilities.enable = true;
     gnome.tracker-miners.enable = false;
