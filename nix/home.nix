@@ -69,6 +69,7 @@
     unzip
     nodenv
     nodejs_20
+    libiconv
   ];
 
   programs.zsh = {
@@ -97,6 +98,7 @@
     sessionVariables = {
       RPS1 = ""; # Disable the right side prompt that "walters" theme introduces
       ZDOTDIR = "~/.config/zsh";
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkconfig";
     };
 
     history = {
