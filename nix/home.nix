@@ -65,13 +65,16 @@
     pyright
     unstable.zed-editor
     xclip
+    pkg-config
+    unzip
+    nodenv
+    nodejs_20
   ];
 
   programs.zsh = {
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "thefuck" ];
-      theme = "powerlevel10k";
     };
     enable = true;
     enableCompletion = true;

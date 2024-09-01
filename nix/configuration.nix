@@ -70,7 +70,12 @@
   environment.systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
+     openssl
   ];
+
+  environment.variables = {
+    PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are
