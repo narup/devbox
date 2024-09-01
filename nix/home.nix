@@ -8,7 +8,7 @@
 
   home.username = "puran";
   home.homeDirectory = "/home/puran";
-  home.stateVersion = "22.11";
+  home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
     gcc
@@ -62,6 +62,9 @@
     fira-code-nerdfont
     cascadia-code
     thefuck 
+    pyright
+    unstable.zed-editor
+    xclip
   ];
 
   programs.zsh = {
@@ -79,7 +82,8 @@
     dotDir = ".config/zsh"; #note - it doesn't have to specify home directory
 
     initExtra = ''
-      #Powerlevel10k Zsh theme  
+      #Powerlevel10k Zsh theme, for this to work you have to configure it first 
+      #and save the file in .p10k.zsh  
       test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh  
     '';
 
