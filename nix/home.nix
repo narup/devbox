@@ -17,7 +17,8 @@
     gnumake 
     binutils 
     coreutils
-    neovim
+    python3
+    unstable.neovim
     antibody
     stow
     fzf
@@ -70,6 +71,8 @@
     nodenv
     nodejs_20
     libiconv
+    luajitPackages.luarocks
+    gitui
   ];
 
   programs.zsh = {
