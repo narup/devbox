@@ -4,6 +4,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "vscode"
+    "obsidian"
   ];
 
   home.username = "puran";
@@ -73,6 +74,7 @@
     libiconv
     luajitPackages.luarocks
     gitui
+    obsidian
   ];
 
   programs.zsh = {
