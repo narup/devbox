@@ -122,6 +122,9 @@
       nix-config = "cd /etc/nixos | sudo nvim -n .";
       vpn-start = "nmcli connection up vpn";
       vpn-stop = "nmcli connection down vpn";
+      connect-postgres-local = "PGPASSWORD=postgres123 psql -h localhost -p 5432 -U postgres -d testdb";
+      start-postgres-local = "docker-compose -f postgres.yaml up -d";
+      stop-postgres-local = "docker-compose down";
     };
 
     plugins = [
